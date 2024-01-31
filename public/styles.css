@@ -1,3 +1,4 @@
+/* App.css */
 body {
     background-color: #81d4fa;
     font-family: 'Comic Sans MS', cursive;
@@ -31,8 +32,8 @@ body {
     margin-bottom: 20px;
   }
   
-  .form input {
-    flex: 1;
+  .input-box {
+    flex: 2.5; /* Adjust the size as needed */
     padding: 10px;
     border: 1px solid #1976d2;
     border-radius: 5px;
@@ -40,7 +41,16 @@ body {
     font-size: 1em;
   }
   
-  .form button {
+  .priority-dropdown {
+    flex: 0.5; /* Adjust the size as needed */
+    padding: 10px;
+    border: 1px solid #1976d2;
+    border-radius: 5px;
+    margin-right: 10px;
+    font-size: 1em;
+  }
+  
+  button {
     padding: 10px 20px;
     background-color: #1976d2;
     color: #fff;
@@ -56,7 +66,6 @@ body {
   }
   
   li {
-    background-color: #bbdefb;
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 8px;
@@ -64,9 +73,20 @@ body {
     cursor: pointer;
     transition: background 0.3s, transform 0.3s;
   }
+
+  li.high-priority {
+    background-color: #6DB9EF;
+  }
+  
+  li.medium-priority {
+    background-color: #aedcff;
+  }
+  
+  li.low-priority {
+    background-color: #cbe5ff;
+  }
   
   li:hover {
-    background-color: #64b5f6;
     transform: scale(1.02);
   }
   
@@ -74,18 +94,10 @@ body {
     text-decoration: line-through;
     background-color: #81c784;
   }
-  
-  @media (max-width: 600px) {
-    .container {
-      margin: 20px;
-    }
-  
-    .form {
-      flex-direction: column;
-    }
-  
-    .form input {
-      margin-bottom: 10px;
-    }
+
+  .date {
+    font-size: 1rem;
+    margin-top: 0;
+    text-align: right;
+    color: #555;
   }
-  
