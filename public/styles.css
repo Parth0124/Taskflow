@@ -101,3 +101,8 @@ body {
     text-align: right;
     color: #555;
   }
+
+  li.highlighted:hover {
+    background-color: #FAF2D3;
+    transition: background 0.3s;
+  }
