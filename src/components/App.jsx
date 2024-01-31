@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from 'react';
+import Header from './Header';
+import Form from './Form';
+import Todolist from './Todolist';
+import Footer from './Footer';
 
 function App() {
   const [inputText, setInputText] = useState("");
   const [items, setItems] = useState([]);
-  const [priority, setPriority] = useState("medium");
+  const [priority, setPriority] = useState("high");
   const [currentDate, setCurrentDate] = useState("");
 
   useEffect(() => {
     const date = new Date();
-    const options = {day: 'numeric',month: 'long', year: 'numeric', };
+    const options = {day:'numeric', month: 'long', year: 'numeric', };
     setCurrentDate(date.toLocaleDateString('en-US', options));
   }, []);
 
@@ -21,7 +25,6 @@ function App() {
       ...prevItems,
       { text: inputText, completed: false, priority: priority, highlighted: true },
     ]);
-    setInputText("");
   }
 
   function toggleCompletion(index) {
@@ -40,47 +43,10 @@ function App() {
 
   return (
     <div className="container">
-      <div className="heading">
-        <h1>To-Do List</h1>
-        <div className="date">{currentDate}</div>
-      </div>
-      <div className="form">
-        <input type="text" value={inputText} onChange={handleChange} className="input-box" />
-        <select
-          value={priority}
-          onChange={(e) => setPriority(e.target.value)}
-          className="priority-dropdown"
-        >
-          <option value="high">High</option>
-          <option value="medium">Medium</option>
-          <option value="low">Low</option>
-        </select>
-        <button onClick={addItem}>
-          <span>Add</span>
-        </button>
-      </div>
-      <div>
-        <ul>
-          {items.map((item, index) => (
-            <li
-              key={index}
-              className={`${item.highlighted ? 'highlighted' : ''} ${item.priority}-priority`}
-              onClick={() => toggleCompletion(index)}
-            >
-              <span
-                style={{
-                  textDecoration: item.completed ? "line-through" : "none",
-                }}
-              >
-                {item.text}
-              </span>
-              <br />
-            </li>
-          ))}
-        </ul>
-      </div>
-      <button onClick={clearCompleted}>Clear Completed</button>
-      <p>{remainingCount} items remaining</p>
+      <Header currentDate={currentDate}/>
+      <Form setPriority={setPriority} handleChange={handleChange} addItem={addItem}/>
+      <Todolist items={items} toggleCompletion={toggleCompletion}/>
+      <Footer clearCompleted={clearCompleted} remainingCount={remainingCount}/>
     </div>
   );
 }
